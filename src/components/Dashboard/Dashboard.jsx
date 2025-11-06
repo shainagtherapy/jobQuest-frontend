@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import * as userService from "../../services/userService";
-const Dashboard = (props) => {
+const Dashboard = ({jobs}) => {
 	const { user } = useContext(UserContext);
 	const [users, setUsers] = useState([]);
 	useEffect(() => {
@@ -24,9 +24,11 @@ const Dashboard = (props) => {
 				This is the dashboard page where you can see a list of all the users.
 			</p>
 			<ul>
-				{users.map((user, index) => {
-					return <li key={index}>{user.username}</li>;
-				})}
+			{jobs.map((job, index) => {
+				return (
+					<li>{job.jobTitle}</li>
+				)
+			})}
 			</ul>
 		</main>
 	);

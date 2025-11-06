@@ -1,10 +1,10 @@
 // src/App.jsx
-import { useContext, useState } from "react";
-import { Routes, Route } from "react-router"; // Import React Router
+import { useContext, useState, useEffect } from "react";
+import { Routes, Route } from "react-router"; 
 import { UserContext } from "./contexts/UserContext";
+import * as jobService from "./services/jobService"
 
 import NavBar from "./components/NavBar/NavBar";
-// Import the SignUpForm component
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import SignInForm from "./components/SignInForm/SignInForm";
 import Landing from "./components/Landing/Landing";
@@ -12,13 +12,20 @@ import Dashboard from "./components/Dashboard/Dashboard";
 
 const App = () => {
 	const { user } = useContext(UserContext);
+	const [jobs, setJobs] = useState([]);
+	useEffect(() => {
+		const fetchAllJobs = async () => {
+			const jobsData = await jobService.index();
+			setJobs(jobsData)
+		}
+		if (user) fetchAllJobs();
+	}, [user]);
 
 	return (
 		<>
 			<NavBar />
-			{/* Add the Routes component to wrap our individual routes*/}
 			<Routes>
-				<Route path="/" element={user ? <Dashboard /> : <Landing />} />
+				<Route path="/" element={user ? <Dashboard jobs={jobs} /> : <Landing />} />
 				<Route path="/sign-up" element={<SignUpForm />} />
 				<Route path="/sign-in" element={<SignInForm />} />
 			</Routes>

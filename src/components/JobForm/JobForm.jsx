@@ -27,7 +27,7 @@ const JobForm = (props) => {
         <main>
             <h1>Add a new job</h1>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="job-title-input">Job Title</label>
+            <label htmlFor="job-title-input">Job Title*</label>
             <input 
                 required 
                 type="text" 
@@ -36,16 +36,18 @@ const JobForm = (props) => {
                 value={formData.jobTitle}
                 onChange={handleChange}
             />
-            <label htmlFor="company-name-input">Company Name</label>
+            <label htmlFor="company-name-input">Company Name*</label>
             <input 
+                required
                 type="text" 
                 name="companyName" 
                 id="company-name-input"
                 value={formData.companyName}
                 onChange={handleChange}
             />
-            <label htmlFor="company-website-input">Company Website</label>
+            <label htmlFor="company-website-input">Company Website*</label>
             <input 
+                required
                 type="text" 
                 name="companyWebsite" 
                 id="company-website-input"
@@ -60,16 +62,18 @@ const JobForm = (props) => {
                 value={formData.companyLinkedIn}
                 onChange={handleChange}
             />
-            <label htmlFor="job-description-input">Job Description</label>
+            <label htmlFor="job-description-input">Job Description*</label>
             <input 
+                required
                 type="text" 
                 name="jobDescription" 
                 id="job-description-input"
                 value={formData.jobDescription}
                 onChange={handleChange}
             />
-            <label htmlFor="date-applied-input">Date Applied</label>
+            <label htmlFor="date-applied-input">Date Applied*</label>
             <input 
+                required
                 type="date" 
                 name="dateApplied" 
                 id="date-applied-input"
@@ -84,8 +88,9 @@ const JobForm = (props) => {
                 value={formData.referral}
                 onChange={handleChange}
             />
-            <label htmlFor="status-input">Status</label>
+            <label htmlFor="status-input">Status*</label>
             <select
+                required
                 type="select" 
                 name="status" 
                 id="status-input"
